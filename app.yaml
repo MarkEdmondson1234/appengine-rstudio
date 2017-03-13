@@ -3,3 +3,12 @@ env: flex
 automatic_scaling:
   min_num_instances: 1
   max_num_instances: 1
+
+resources:
+  cpu: 1
+  memory_gb: 2
+
+env_variables:
+  APP_SCRIPT: "do_stuff.R"
+  AUTH_FILE: "auth.rds"
+  
