@@ -2,7 +2,7 @@
 
 Appengine is a managed compute service that recently started to [support Docker environments that can run any code](https://cloud.google.com/appengine/docs/flexible/).  This is a demo of deploying R.
 
-Appengine offers benefits such as a free tier and auto scaling that turns off the instance when you are not using it.  It reboots upon request of the application URL.
+Appengine offers benefits such as auto scaling that turns off the instance when you are not using it.  It reboots upon request of the application URL.
 
 I wouldn't keep any data on the instance, but with the use of [Google Cloud Storage](https://github.com/cloudyr/googleCloudStorageR) you can preserve state. 
 
@@ -16,6 +16,8 @@ Clone repo then in same directory run:
 ```
 gcloud app deploy --project your-project
 ```
+
+It takes a while. 
 
 Demo: https://mark-rstudio.appspot.com (auth login only) 
 
@@ -54,20 +56,27 @@ Flexible containers do not support basic_scaling
 
 ## Instance size
 
-You can set the size of the instance via the resources config:
+You can set the size of the instance via the resources config.  
 
 e.g. 
 
 ```yaml
 resources:
   cpu: 2
-  memory_gb: 2.3
-  disk_size_gb: 10
-  volumes:
-  - name: ramdisk1
-    volume_type: tmpfs
-    size_gb: 0.5
+  memory_gb: 2
 ```
+
+### Pricing
+
+[Pricing is here](https://cloud.google.com/appengine/pricing#flexible-environment-instances).  Flexible doesn't do a free tier yet. 
+
+A rough guide is $1.26 per 24hours per core, $0.17 per 24hours per GB of RAM.
+
+Running a 1 core instance with 2GB of ram per day will be $1.60 for 24hours, or $0.07 an hour.  
+
+Assuming 3 hours use per 5day weekdays (20 days * 3 hours) this is $4 a month.
+
+
 
 ## reference
 
