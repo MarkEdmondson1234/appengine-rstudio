@@ -17,7 +17,7 @@ This builds on top of the [persistent RStudio image](https://cloudyr.github.io/g
 GCS_SESSION_BUCKET="your bucket"
 ```
 
-5. [Optional] Add your default username that you use on other RStudio backups by altering `your_username` and `your_password` in the below.  If you don't do this, you will be saving files under `/home/rstudio` username.
+5. [Optional] In the `Dockerfile`, add your default username that you use on other RStudio backups by altering `your_username` and `your_password` in the below.  If you don't do this, you will be saving files under `/home/rstudio` username.
 
 ```
 ## add your default user and password
@@ -33,10 +33,12 @@ gcloud app deploy --project your-project
 
 It takes a while (10mins +)
 
-7. Once ready, log in with username `rstudio` and password `rstudio`, or your details you set in step 5. 
+7. Once ready, log in at https://your-project.appspot.com with username `rstudio` and password `rstudio`, or the credentials you set in step 5. 
 8. Configure Identity Aware Proxy https://console.cloud.google.com/iam-admin/iap for the App Engine project URL. [How-to guide](https://cloud.google.com/iap/docs/app-engine-quickstart).  This will add a Google OAuth2 login over the RStudio login page (much more secure)
 
-You should now have all the settings you saved under `/home/your_user` on the Cloud Service available each time you login. The server will turn off after some time of inactivity.  See [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) for details. 
+You shuld now be able to log in and access all the files you saved under `/home/your_user` on the Cloud Service.  When first logging in, it should load any SSH and GitHub configurations, and when you create a new RStudio Project with the same name as one already saved, it should download any missing files. 
+
+The server will turn off after some time of inactivity.  See [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) for more details. 
 
 ## Configuration
 
