@@ -31,9 +31,12 @@ RUN useradd --create-home --shell /bin/bash your_username && \
 gcloud app deploy --project your-project
 ```
 
-It takes a while. 
+It takes a while (10mins +)
 
-Session data will be saved under the username you have in step 5. - from [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) if this is set to the same as other RStudio backups, your settings for GitHub, SSH and other projects should all be available in the App Engine instance as well.
+7. Once ready, log in with username `rstudio` and password `rstudio`, or your details you set in step 5. 
+8. Configure Identity Aware Proxy https://console.cloud.google.com/iam-admin/iap for the App Engine project URL. [How-to guide](https://cloud.google.com/iap/docs/app-engine-quickstart).  This will add a Google OAuth2 login over the RStudio login page (much more secure)
+
+You should now have all the settings you saved under `/home/your_user` on the Cloud Service available each time you login. The server will turn off after some time of inactivity.  See [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) for details. 
 
 ## Configuration
 
@@ -52,11 +55,11 @@ resources:
 
 ```
 
-The `Dockerfile` downloads a prepared RStudio instance with tools to persist data, and `rserver.conf` puts RStudio on port `8080` as required by App Engine, which will then route traffic onto normal web ports `80`. 
+The `Dockerfile` downloads a prepared RStudio instance with tools to persist data, and `rserver.conf` puts RStudio on port `8080` as required by App Engine, which will then route traffic onto normal web ports `80`. It then adds any environment arguments saved in `Renviron.site` - minimum it needs `GCS_SESSION_BUCKET` but you can add other stuff such as other API keys, defaults etc. here. 
 
 ## Authentication
 
-Setup an Identity Aware Proxy https://console.cloud.google.com/iam-admin/iap for the App Engine. [How-to guide](https://cloud.google.com/iap/docs/app-engine-quickstart).
+Identity Aware Proxy https://console.cloud.google.com/iam-admin/iap for the App Engine. [How-to guide](https://cloud.google.com/iap/docs/app-engine-quickstart).
 
 The instance uses this to add a Google OAuth2 proxy login over the top of the normal RStudio login, you can configure access
 
