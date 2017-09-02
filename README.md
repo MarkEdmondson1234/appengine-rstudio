@@ -20,10 +20,12 @@ ENV GCS_SESSION_BUCKET="your-bucket"
 5. In the same directory run:
 
 ```
-gcloud app deploy --project you-project
+gcloud app deploy --project your-project
 ```
 
 It takes a while. 
+
+Session data will be saved under the "rstudio" username - see [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) on how to configure this to be persistent between your username from other GCE instances and local RStudio. 
 
 ## Configuration
 
@@ -89,15 +91,6 @@ e.g.
 resources:
   cpu: 2
   memory_gb: 2
-```
-
-### Environment
-
-Set this to the bucket that contains your backups.  This will be saved under the "rstudio" username - see [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) on how to configure this to be persistent between other GCE instances and local RStudio. 
-
-```
-env_variables:
-  GCS_SESSION_BUCKET: "the-gcs-session-bucket"
 ```
 
 ## Pricing

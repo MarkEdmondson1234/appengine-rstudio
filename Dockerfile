@@ -7,4 +7,4 @@ EXPOSE 8080
 COPY rserver.conf /etc/rstudio/rserver.conf
 
 ## change this line to your session bucket
-ENV GCS_SESSION_BUCKET="you-bucket"
+ENV GCS_SESSION_BUCKET="your-bucket"
