@@ -1,4 +1,4 @@
-FROM rocker/hadleyverse
+FROM gcr.io/gcer-public/persistent-rstudio
 MAINTAINER Mark Edmondson (r@sunholo.com)
 
 EXPOSE 8080
