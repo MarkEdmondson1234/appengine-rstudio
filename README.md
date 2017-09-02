@@ -8,13 +8,13 @@ This builds on top of the [persistent RStudio image](https://cloudyr.github.io/g
 
 ## Launch
 
-1. If you haven't got one already, set up a Google Cloud Storage bucket that will contain the backup data
+1. If you haven't got one already, set up a Google Cloud Storage bucket that will contain the R session backup data
 2. Clone this repo
 3. The authentication service email will be the default App Engine project one: e.g. `your-project@appspot.gserviceaccount.com` - give this at least Cloud Storage access to the bucket from step 1
-4. Change this line in the Dockerfile to the bucket from step 1
+4. Change this line in the `Renviron.site` to the bucket from step 1
 
 ```
-ENV GCS_SESSION_BUCKET="your-bucket"
+GCS_SESSION_BUCKET="your bucket"
 ```
 
 5. In the same directory run:

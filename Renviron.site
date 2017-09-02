@@ -1,0 +1,3 @@
+# set helpful environment arguments
+## minimum needed for persistent files:
+GCS_SESSION_BUCKET="your bucket"

@@ -7,3 +7,4 @@ automatic_scaling:
 resources:
   cpu: 2
   memory_gb: 4
+  
