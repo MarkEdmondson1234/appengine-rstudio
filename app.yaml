@@ -7,8 +7,3 @@ automatic_scaling:
 resources:
   cpu: 2
   memory_gb: 4
-
-env_variables:
-  GCE_SESSION_BUCKET: "your-bucket"
-  GCS_AUTH_FILE: "auth.json"
-  
