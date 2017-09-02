@@ -17,7 +17,15 @@ This builds on top of the [persistent RStudio image](https://cloudyr.github.io/g
 GCS_SESSION_BUCKET="your bucket"
 ```
 
-5. In the same directory run:
+5. [Optional] Add your default username that you use on other RStudio backups by altering `your_username` and `your_password` in the below.  If you don't do this, you will be saving files under `/home/rstudio` username.
+
+```
+## add your default user and password
+RUN useradd --create-home --shell /bin/bash your_username && \
+    echo your_username:your_password | chpasswd
+```
+
+6. In the same directory run:
 
 ```
 gcloud app deploy --project your-project
@@ -25,7 +33,7 @@ gcloud app deploy --project your-project
 
 It takes a while. 
 
-Session data will be saved under the "rstudio" username - see [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) on how to configure this to be persistent between your username from other GCE instances and local RStudio. 
+Session data will be saved under the username you have in step 5. - from [this link](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) if this is set to the same as other RStudio backups, your settings for GitHub, SSH and other projects should all be available in the App Engine instance as well.
 
 ## Configuration
 
@@ -41,6 +49,7 @@ automatic_scaling:
 resources:
   cpu: 2
   memory_gb: 4
+
 ```
 
 The `Dockerfile` downloads a prepared RStudio instance with tools to persist data, and `rserver.conf` puts RStudio on port `8080` as required by App Engine, which will then route traffic onto normal web ports `80`. 
