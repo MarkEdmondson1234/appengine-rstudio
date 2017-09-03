@@ -6,6 +6,14 @@ App Engine offers benefits such as auto scaling that turns off the instance when
 
 This builds on top of the [persistent RStudio image](https://cloudyr.github.io/googleComputeEngineR/articles/persistent-rstudio.html) developed for googleComputeEngineR, with which you can configure persistent GitHub/SSH keys and backups on Cloud Storage. 
 
+## Pricing
+
+[Pricing is here](https://cloud.google.com/appengine/pricing#flexible-environment-instances).  Flexible doesn't do a free tier yet, and the minimum is 1 instance running 24/7
+
+A rough guide is $1.26 per 24hours per core, $0.17 per 24hours per GB of RAM.
+
+Running a 1 core instance with 2GB of ram per day will be $1.60 for 24hours, or $0.07 an hour, $48 a month.  This is more expensive than running an equivalent GCE instance, so this solution is only worth looking at if you have more users.
+
 ## Launch
 
 1. If you haven't got one already, set up a Google Cloud Storage bucket that will contain the R session backup data
@@ -106,17 +114,6 @@ resources:
   cpu: 2
   memory_gb: 2
 ```
-
-## Pricing
-
-[Pricing is here](https://cloud.google.com/appengine/pricing#flexible-environment-instances).  Flexible doesn't do a free tier yet. 
-
-A rough guide is $1.26 per 24hours per core, $0.17 per 24hours per GB of RAM.
-
-Running a 1 core instance with 2GB of ram per day will be $1.60 for 24hours, or $0.07 an hour.  
-
-Assuming 3 hours use per 5day weekdays (20 days * 3 hours) this is $4 a month.
-
 
 
 ## reference
